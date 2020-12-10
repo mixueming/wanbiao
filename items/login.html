@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="head public">
+        <img src="./images/logo-icon.png" alt="">
+    </div>
+    <div class="bdy">
+        <img src="./images/login_img.png" alt="">
+        <div class="log">
+            <div class="log_head">
+                <h2 class="bdy_h2_1 active">会员登录</h2>
+                <p class="bdy_h2_2">|</p>
+                <h2 class="bdy_h2_1">扫码登录</h2>
+            </div>
+            <div class="log_bbdy">
+                <div class="log_bdy active">
+                   
+                    <div class="all">
+                        <div class="first_1 like mi">
+                            <div class="log_d1"><input type="text" placeholder="手机号码"></div>
+                            <div class="log_d2"><input type="text" placeholder="请输入图形验证码"><div class="code"></div></div>
+                            <div class="log_d2"><input type="text" placeholder="短信验证码"><div class="info">获取验证码</div></div>
+                        </div>
+                        
+                        <div class="second_2 like">
+                            <form action="">
+                                <span class="sp1">用户名或密码错误</span>
+                                <div class="log_d1"><input class="ip1" autocomplete="off" name="username" type="text" placeholder="手机号/会员名/密码"></div>
+                                <div class="log_d1"><input class="ip2" autocomplete="off" name="password" type="text" placeholder="请输入密码"></div>
+                                <p><a href="">忘记密码</a></p>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <button type="submit" class="btn1">立即登录</button>
+                    <p class="log_p1"><a href="./register.html">免费注册</a></p>
+                    <div class="log_com">
+                        <!-- <a href="javascript::">123456</a> -->
+                        <a href="#"></a>
+                        <span>|</span>
+                        <i href="#">社交登录</i>  
+                    </div>
+                </div>
+
+
+                <span></span>
+                <div class="log_body">
+                    <img src="./images/qr.png" alt="">
+                    <p class="log_body_p1">
+                        <span>使用<em>万表APP</em>扫码登录</span>
+                        <br/>
+                        <span>在首页顶部搜索栏点击扫一扫</span>
+                    </p>
+                    <p class="log_body_p2"><a href="">下载万表 APP</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <p>万表网名表商城 版权所有 2008-2017 ICP备案证书号:粤ICP备09108738号 网监备案:4401060103141</p>
+        <p> 广州市万表科技股份有限公司 地址:广州市番禺区番禺大道北60-1号</p>
+        <p> Copyright 2008-2017 WWW.WBIAO.CN.LTD ALL RIGHT RESERVED.</p>
+    </div>
+    <script src="./asset/jquery/jquery.min.js"></script>
+    <script>
+        $('.bdy>.log>.log_head>h2').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+            .parent().next().find('> div, > span').removeClass('active').eq($(this).index()).addClass('active')
+        })
+
+        $('.log_bdy > .log_com > a').click(function(e){
+            e.preventDefault()
+            $(this).toggleClass('pp').siblings().removeClass('pp')
+            $(".log_bdy>.all").find('>div').toggleClass('mi')
+        })
+    </script>
+
+    <!-- 验证码 -->
+    <script>
+        const code = document.querySelector('.code')
+        function randomNum(a, b){
+            var max = Math.max(a, b)
+            var min = Math.min(a, b)
+            var res = Math.floor(Math.random() * (max - min + 1)) + min
+            return res
+        }
+        var str = "#"
+        var str1 = ''
+        for(var i = 0; i < 3; i++){
+            var n = randomNum(0, 255)
+            var n2 = n.toString(16)
+            if(n <= 15){
+                n2 = '0' + n2
+            }
+            str += n2
+            str1 += n2
+        }
+        code.style.backgroundColor = str
+        code.innerText = str1
+        code.onclick = function(e){
+            var str = "#"
+            var str1 = ''
+            for(var i = 0; i < 3; i++){
+                var n = randomNum(0, 255)
+                var n2 = n.toString(16)
+                if(n <= 15){
+                    n2 = '0' + n2
+                }
+                str += n2
+                str1 += n2
+            }
+            code.style.backgroundColor = str
+            code.innerText = str1
+        }
+        document.onselectstart = function (e) {
+            e.preventDefault()
+            // return  false
+        }
+    </script>
+
+
+    <!-- 登录验证 -->
+    <script src='./js/cookie.js'></script>
+    <script>
+        const nameIP = document.querySelector('.ip1')
+        const pwdIP = document.querySelector('.ip2')
+        const btn = document.querySelector('.btn1')
+        const span1 = document.querySelector('.sp1')
+        btn.addEventListener('click', function(e){
+            e = e || window.event
+            e.preventDefault()
+
+            const username = nameIP.value
+            const password = pwdIP.value
+            if(!username || !password){
+                alert('请填写完整的表单')
+            }
+            const xhr = new XMLHttpRequest()
+            xhr.open('POST','./php/login.php')
+            xhr.onload = function(){
+                const res = JSON.parse(xhr.responseText)
+                console.log(res)
+                if(res.code == 1){
+                    alert('登录成功')
+                    setCookie('nickname', res.nickname, 30)
+                    window.location.href = './index.html'
+                }else if(res.code == 0){
+                    span1.style.display = 'block'
+                    setTimeout(function(){
+                        span1.style.display = 'none'
+                    },3000)
+                } 
+            }
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+            xhr.send(`username=${username}&password=${password}`)
+        })
+    </script>
+</body>
+</html>

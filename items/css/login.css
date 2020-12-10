@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.public{
+    width: 1000px;
+    margin:25px auto 0px;
+}
+.head{
+    height:100px;
+}
+.bdy{
+    position: relative;
+}
+.bdy>img{
+    width: 100%;
+    height:580px;
+    display: block;
+}
+
+.log{
+    width: 380px;
+    height: 460px;
+    position: absolute;
+    right:270px;
+    top:50px;
+    background-color: white;
+}
+.log_head{
+    width: 269px;
+    height: 26px;
+    line-height: 26px;
+    padding-top:40px;
+    padding-bottom: 20px;
+    margin:0px 55.5px;
+}
+.log_head > h2{
+    float:left;
+}
+.bdy_h2_1{
+    width: 134px;
+    height: 26px;
+    font-size: 20px;
+    color:grey;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}
+.bdy > .log > .log_head > h2.active{
+    color:red ;
+}
+.bdy_h2_2{
+    float:left;
+    width: 1px;
+    color:grey;
+}
+.log_bdy{
+    width: 300px;
+    height:265px;
+    margin:0 auto;
+}
+.log_bdy>.all>.first_1>div>.info{
+    font-size: 14px;
+    color:white;
+    background-color: #ddd;
+    text-align: center;
+    cursor: pointer;
+}
+.log_bdy>.all>.first_1>div{
+    height: 42px;   
+    overflow: hidden;
+    margin-top: 12px;
+}
+.log_bdy input{
+    padding-left:10px;
+    height: 42px; 
+    outline: 0;
+    border:1px solid #ddd;
+    padding-left:10px;
+    box-sizing: border-box;
+    float:left;
+}
+.log_bdy>.all>.first_1>.log_d1>input{
+    width: 300px;
+}
+.log_bdy>.all>.second_2>form>.log_d1>input{
+    width: 300px;
+    margin-top:10px;
+}
+.log_bdy>.all>.second_2{
+    position: relative;
+}
+.log_bdy>.all>.second_2>form>p{
+    text-decoration: none;
+    position: absolute; 
+    right:0px;
+    top:170px;
+}
+
+.log_bdy>.all>.second_2>form>span{
+   color:red;
+   font-size: 14px;
+   display: none;
+}
+
+
+.like.mi{
+    display:block;
+}
+.second_2,.first_1{
+    display: none;
+}
+
+/* 验证码 */
+
+
+
+
+
+
+
+
+
+
+.log_bdy > .log_com > a::before{
+    content:'账号密码'
+}
+.log_bdy > .log_com > a.pp::before{
+    content:'手机动态码登录'
+}
+
+
+.log_bdy>.all>.first_1>.log_d2>input{
+    width: 200px;
+    box-sizing: border-box;
+    margin-right:3px;
+}
+.log_bdy>.all>.first_1>div>div{
+    float:left;
+    height: 42px;
+    line-height: 42px;
+    width: 96px;
+    border:1px solid #ddd;
+    box-sizing: border-box;
+
+}
+.log_bdy>.all>.first_1>div>.code{
+    text-align: center;
+    background-color: #b1b1b1;
+    color:white;
+    cursor: pointer;
+}
+.log_bdy>button{
+    width: 300px;
+    height: 44px;
+    margin:12px 0px;
+    color:white;
+    border:0;
+    outline: none;
+    background-color: #cc5252;
+    cursor: pointer;
+    font-size: 18px;
+}
+.log_bdy a{
+    text-decoration: none;
+    color:#ddd;
+}
+.log_bdy i{
+    font-style: normal;
+    color:#ddd;
+}
+.log_bdy>.log_com{
+    position: absolute;
+    right:55.5px;
+    bottom: 20px;
+}
+.log_bdy>.log_com>span{
+    color:#ddd;
+    position: relative;
+}
+
+.bdy>.log>.log_bbdy>.log_bdy{
+    display: none;
+}
+.bdy>.log>.log_bbdy>.log_body{
+    display: none;
+}
+.bdy > .log > .log_bbdy > div.active{
+    display: block;
+}
+
+
+
+
+
+.log_body{
+    display: none;
+}
+.log_body>img{
+   position: absolute;
+   left:50%;
+   transform: translateX(-50%);
+}
+.log_body> .log_body_p1{
+    width: 100%;
+    position: absolute;
+    bottom:100px;
+    text-align: center;
+}
+.log_body> .log_body_p1 em{
+    font-style: normal;
+    color:red;
+}
+.log_body > .log_body_p2{
+    width: 100%;
+    position: absolute;
+    bottom:40px;
+    text-align: center;
+}
+.log_body > .log_body_p2>a{
+    border:1px solid black;
+    text-decoration: none;
+    padding:10px 30px;
+    border-radius: 55px;
+    color:black;
+}
+
+
+
+.foot{
+    width: 640px;
+    height: 60px;
+    padding:50px 0px;
+    border-top:1px sold #eee;
+    margin:0 auto;
+}
+.foot>p{
+    font-size: 12px;
+    color:#999;
+    text-align: center;
+}
+
+

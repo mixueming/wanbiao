@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/register.css">
+</head>
+<body>
+    <div>
+        <img src="./images/logo-icon.png" alt="">
+        <img src="./images/slogan-02242018.png" alt="">
+    </div>
+    <form action="">
+        <h2>注册万表会员</h2>
+        <input type="text" class="ip1" name="username" autocomplete="off" placeholder="用户名可以是手机号或由6-15位数字字母组成"><br/>
+        <p class='p1 pb'>用户名已经被注册</p>
+        <p class="p11 pb">请正确填写用户名</p>
+        <input type="password" class="ip2" name="password" autocomplete="off" placeholder="请输入密码"><br/>
+        <p class='p2 pb'>密码必须以字母开头,由6-14位数字字母组成</p>
+        <input type="password" class="ip3" placeholder="请再次输入密码"><br/>
+        <p class='p3 pb'>密码不一致</p>
+        <button>立即注册</button>   
+        <p class="pp">点击<a href="./login.html">"立即登录"</a> ，即表示您同意并愿意遵守
+            <a href="#">
+                万表网用户协议
+            </a>
+            
+        </p> 
+    </form>
+    <script>
+        const nameIP = document.querySelector('.ip1')
+        const pwdIP = document.querySelector('.ip2')
+        const re_nameIP = document.querySelector('.ip3')
+        const form = document.querySelector('form')
+        const p1 = document.querySelector('.p1')
+        const p11 = document.querySelector('.p11')
+        const p2 = document.querySelector('.p2')
+        const p3 = document.querySelector('.p3')
+        const p4 = document.querySelector('.pp')
+        // const us1 = /^(+86)?(133|156|188|187|189)\d{8}$/
+        const us = /^[a-zA-Z0-9]\w{5,15}$/i
+        const ps = /^[a-zA-Z]\w{5,14}$/i
+        form.addEventListener('input',function(e){
+            e = e || window.event
+            const target = e.target || e.srcElement
+            const username = nameIP.value
+            const password = pwdIP.value
+            const re_password = re_nameIP.value
+            if(target.nodeName = 'INPUT'){
+                if(!(us.test(username))){
+                    p11.style.display = 'block'
+                }else{
+                    p11.style.display = 'none'
+                    if(!(ps.test(password))){
+                        p2.style.display = 'block'
+                    }else{
+                        p2.style.display = 'none'
+                        if(password !== re_password){
+                            p3.style.display='block'
+                        }else{
+                            p3.style.display='none'
+
+                        }
+                    }
+                }
+            }
+        })
+        form.addEventListener('submit',function(e){
+            e = e || window.event
+            e.preventDefault()
+
+            const username = nameIP.value
+            const password = pwdIP.value
+            const re_password = re_nameIP.value
+            if(!username || !password || !re_password){
+                alert('请填写完整的表单')
+                return
+            }
+            
+            const xhr = new XMLHttpRequest()
+            xhr.open('POST', './php/register.php')
+            xhr.onload = function(){
+                const res = JSON.parse(xhr.responseText)
+                if(res.code === 2){
+                    // alert('用户名已经被注册')
+                    p1.style.display = 'block'
+                }else if(res.code === 0){
+                    alert('注册失败')
+                }else if(res.code === 1){
+                    window.location.href = './login.html'
+                }
+            }
+
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+            xhr.send(`username=${username}&password=${password}`)
+        })
+    </script>
+</body>
+</html>
